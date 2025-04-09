@@ -1,22 +1,81 @@
-import { invoke } from "@tauri-apps/api/core";
+import { invoke } from '@tauri-apps/api/core';
+import { open } from '@tauri-apps/plugin-dialog';
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
+let questionsPath: string[] = [];
+let logsPath: string[] = [];
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
-    });
+function updateSelectedFiles() {
+  document.getElementById("selected-questions")!.textContent = `Selected: ${questionsPath.join(", ") || "None"}`;
+  document.getElementById("selected-logs")!.textContent = `Selected: ${logsPath.join(", ") || "None"}`;
+}
+
+async function selectQuestions() {
+  const files = await open({ multiple: true, filters: [{ name: "RTF files", extensions: ["rtf"] }] });
+  if (files) {
+    questionsPath = Array.isArray(files) ? files : [files];
+    updateSelectedFiles();
   }
 }
 
+async function selectLogs() {
+  const files = await open({ multiple: true, filters: [{ name: "CSV files", extensions: ["csv"] }] });
+  if (files) {
+    logsPath = Array.isArray(files) ? files : [files];
+    updateSelectedFiles();
+  }
+}
+
+async function runQperf() {
+  const delimiter = (document.getElementById("delimiter") as HTMLInputElement).value;
+  const tournament = (document.getElementById("tournament") as HTMLInputElement).value;
+  const displayRounds = (document.getElementById("display-rounds") as HTMLInputElement).checked;
+
+  const checkboxes = document.querySelectorAll("#question-types input[type='checkbox']");
+  const checked = Array.from(checkboxes).map((checkbox) => (checkbox as HTMLInputElement).checked);
+
+  const input = {
+    questions_path: questionsPath,
+    logs_path: logsPath,
+    delimiter,
+    tourn: tournament,
+    checked,
+    display_individual_rounds: displayRounds,
+  };
+
+  try {
+    const result = await invoke("run_qperf", { input });
+    const { status_message, warns, ready_save } = result as any;
+
+    document.getElementById("status-message")!.textContent = `Status: ${status_message}`;
+    const warningsEl = document.getElementById("warnings")!;
+    warningsEl.innerHTML = warns.map((warn: string) => `<p>${warn}</p>`).join("");
+    (document.getElementById("save-output") as HTMLButtonElement).disabled = ready_save !== "Ready to save";
+  } catch (error) {
+    console.error(error);
+    document.getElementById("status-message")!.textContent = "Status: Error running qperf.";
+  }
+}
+
+function clearForm() {
+  questionsPath = [];
+  logsPath = [];
+  updateSelectedFiles();
+
+  (document.getElementById("delimiter") as HTMLInputElement).value = ",";
+  (document.getElementById("tournament") as HTMLInputElement).value = "";
+  (document.getElementById("display-rounds") as HTMLInputElement).checked = false;
+
+  const checkboxes = document.querySelectorAll("#question-types input[type='checkbox']");
+  checkboxes.forEach((checkbox) => ((checkbox as HTMLInputElement).checked = true));
+
+  document.getElementById("status-message")!.textContent = "Status: Waiting for input...";
+  document.getElementById("warnings")!.innerHTML = "";
+  (document.getElementById("save-output") as HTMLButtonElement).disabled = true;
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+  document.getElementById("select-questions")?.addEventListener("click", selectQuestions);
+  document.getElementById("select-logs")?.addEventListener("click", selectLogs);
+  document.getElementById("run")?.addEventListener("click", runQperf);
+  document.getElementById("clear")?.addEventListener("click", clearForm);
 });
