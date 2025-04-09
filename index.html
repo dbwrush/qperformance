@@ -9,68 +9,106 @@
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-left">
+        <h1>QPerformance</h1>
+      </div>
+      <div class="header-right">
+        <a id="quizstuff-link" href="#">QuizStuff</a>
+        <a id="github-link" href="#">GitHub</a>
+      </div>
+    </header>
     <main class="container">
-      <h1>QPerformance</h1>
-
-      <!-- File Selection -->
-      <section>
+      <section class="tile file-selection">
         <h2>File Selection</h2>
         <div>
-          <label>Question Sets:</label>
-          <button id="select-questions">Pick Files (.rtf)</button>
+          <button id="select-questions">Pick Question Set Files (.rtf)</button>
           <p id="selected-questions">Selected: None</p>
         </div>
         <div>
-          <label>QuizMachine Records:</label>
-          <button id="select-logs">Pick Files (.csv)</button>
+          <button id="select-logs">Pick QuizMachine Record Files (.csv)</button>
           <p id="selected-logs">Selected: None</p>
         </div>
       </section>
 
-      <!-- Question Types -->
-      <section>
+      <section class="tile question-types">
         <h2>Question Types</h2>
         <div id="question-types">
-          <label><input type="checkbox" value="A" checked /> A</label>
-          <label><input type="checkbox" value="G" checked /> G</label>
-          <label><input type="checkbox" value="I" checked /> I</label>
-          <label><input type="checkbox" value="Q" checked /> Q</label>
-          <label><input type="checkbox" value="R" checked /> R</label>
-          <label><input type="checkbox" value="S" checked /> S</label>
-          <label><input type="checkbox" value="X" checked /> X</label>
-          <label><input type="checkbox" value="V" checked /> V</label>
-          <label><input type="checkbox" value="M" checked /> Memory Verse totals (Q, R, V)</label>
+          <label>
+            <input type="checkbox" value="A" checked />
+            <span class="toggle"></span>
+            A According-to
+          </label>
+          <label>
+            <input type="checkbox" value="G" checked />
+            <span class="toggle"></span>
+            G General
+          </label>
+          <label>
+            <input type="checkbox" value="I" checked />
+            <span class="toggle"></span>
+            I Book & Chapter
+          </label>
+          <label>
+            <input type="checkbox" value="Q" checked />
+            <span class="toggle"></span>
+            Q Quote
+          </label>
+          <label>
+            <input type="checkbox" value="R" checked />
+            <span class="toggle"></span>
+            R Reference
+          </label>
+          <label>
+            <input type="checkbox" value="S" checked />
+            <span class="toggle"></span>
+            S Situation
+          </label>
+          <label>
+            <input type="checkbox" value="X" checked />
+            <span class="toggle"></span>
+            X Context
+          </label>
+          <label>
+            <input type="checkbox" value="V" checked />
+            <span class="toggle"></span>
+            V Verse
+          </label>
+          <label class="memory-verse">
+            <input type="checkbox" value="M" checked />
+            <span class="toggle"></span>
+            Memory Verse totals (Q, R, V)
+          </label>
         </div>
       </section>
 
-      <!-- Inputs -->
-      <section>
+      <section class="tile settings">
         <h2>Settings</h2>
         <div>
-          <label>Delimiter:</label>
-          <input id="delimiter" type="text" value="," />
+          <input id="delimiter" type="text" placeholder="Custom delimiter (Optional)" />
         </div>
         <div>
-          <label>Tournament:</label>
-          <input id="tournament" type="text" placeholder="Enter tournament name" />
+          <input id="tournament" type="text" placeholder="Enter tournament name (Recommended)" />
         </div>
         <div>
-          <label><input id="display-rounds" type="checkbox" /> Display individual round results</label>
+          <label>
+            <input id="display-rounds" type="checkbox" />
+            <span class="toggle"></span>
+            Display individual round results
+          </label>
         </div>
       </section>
 
-      <!-- Actions -->
-      <section>
+      <section class="tile actions">
         <h2>Actions</h2>
         <button id="run">Run</button>
         <button id="clear">Clear</button>
         <button id="save-output" disabled>Save Output (.csv)</button>
       </section>
 
-      <!-- Status -->
-      <section>
+      <section class="tile status">
         <h2>Status</h2>
-        <p id="status-message">Status: Waiting for input...</p>
+        <p id="status-message">Waiting for input files</p>
         <div id="warnings"></div>
       </section>
     </main>

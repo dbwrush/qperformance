@@ -98,6 +98,7 @@ fn save_output(output_path: String, output: String) -> Result<String, String> {
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![run_qperf, save_output])
         .run(tauri::generate_context!())

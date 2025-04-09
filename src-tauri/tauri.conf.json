@@ -13,9 +13,9 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "qperf_tauri",
+        "title": "QPerformance",
         "width": 800,
-        "height": 600
+        "height": 950
       }
     ],
     "security": {
