@@ -58,16 +58,18 @@ If the pre-compiled versions don't work on your machine or you're using a platfo
    ```bash
    pnpm install
    ```
-
-3. **Build the project**:
+   
+3. **Run the project**:
    ```bash
    cargo tauri dev
    ```
 
-4. **Run the executable** from the `target/release` directory:
+4. **Build the project**:
    ```bash
-   ./target/release/qperf_tauri
+   cargo tauri build
    ```
+
+5. **Run the executable** from the `src_tauri/target/release` directory.
 
 ---
 
