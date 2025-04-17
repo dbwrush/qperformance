@@ -3,7 +3,9 @@ name: "Publish Tauri App"
 on:
   push:
     tags:
-      - 'v*' # Trigger on tags like v1.0.0, v2.3.1, etc.
+      - 'v*'
+    branches: '*'
+  workflow_dispatch:
 
 jobs:
   publish-tauri:
