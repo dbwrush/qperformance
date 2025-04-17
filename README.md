@@ -24,17 +24,13 @@
 
 ### Downloading Pre-Compiled Builds (Recommended for most users)
 
-Compiled binaries of **qperformance** are available for:
-
-- **Windows PCs** (x86, Intel/AMD CPUs)
-- **Linux PCs** (x86, Intel/AMD CPUs)
-
+Compiled binaries of **qperformance** are available for most platforms, including Windows, Mac, and Linux!
 Visit the [Releases](https://github.com/dbwrush/qperformance/releases) page to download the latest version.
 
-> **Note:**  
-> The vast majority of Windows PCs use Intel or AMD CPUs compatible with this program. If you're unsure, try running the Windows build first.
-
-For other systems (e.g., macOS or ARM-based devices), you will need to build the program from source. 
+**What about Windows/Linux on ARM?**
+- We have an ARM build for Linux, but I don't have a device to test it with, so I don't know how well it works.
+- Windows on ARM has a compatibility layer to attempt to run x86 programs, but I haven't tested this yet.
+Testing and feedback on both of these is appreciated!
 
 **Command-line**: This version uses a graphical interface that is easier for most users. If you prefer a command-line interface, check out [qperf_cli](https://github.com/dbwrush/qperf_cli)
 
