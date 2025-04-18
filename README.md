@@ -57,12 +57,12 @@ If the pre-compiled versions don't work on your machine or you're using a platfo
    
 3. **Run the project**:
    ```bash
-   cargo tauri dev
+   pnpm tauri dev
    ```
 
 4. **Build the project**:
    ```bash
-   cargo tauri build
+   pnpm tauri build
    ```
 
 5. **Run the executable** from the `src_tauri/target/release` directory.
