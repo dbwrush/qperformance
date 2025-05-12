@@ -1,8 +1,8 @@
 [package]
-name = "qperf_tauri"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "qperformance"
+version = "3.0.0"
+description = "An app to calculate Bible Quizzing stats"
+authors = ["David Rush"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
