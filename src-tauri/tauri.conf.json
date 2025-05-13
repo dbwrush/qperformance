@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "qperf_tauri",
+  "productName": "qperformance",
   "version": "3.0.0",
-  "identifier": "com.dbwrush.qperf-tauri",
+  "identifier": "com.dbwrush.qperformance",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
