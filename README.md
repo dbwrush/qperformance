@@ -35,7 +35,7 @@ Testing and feedback on both of these is appreciated!
 **Command-line**: This version uses a graphical interface that is easier for most users. If you prefer a command-line interface, check out [qperf_cli](https://github.com/dbwrush/qperf_cli)
 
 ### Building From Source (For Developers)
-If the pre-compiled versions don't work on your machine or you're using a platform like macOS or ARM-based devices, you can build `qperf_tauri` from source.
+If the pre-compiled versions don't work on your machine or you're using a platform like macOS or ARM-based devices, you can build `qperformance` from source.
 
 **Prerequisites**
 
@@ -46,8 +46,8 @@ If the pre-compiled versions don't work on your machine or you're using a platfo
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/dbwrush/qperf_tauri.git
-   cd qperf_tauri
+   git clone https://github.com/dbwrush/qperformance.git
+   cd qperformance
    ```
 
 2. **Install frontend dependencies**:
